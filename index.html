@@ -12,13 +12,119 @@
 
 <body>
 
-    <h1>Homework Planner</h1>
+    <header>
+        <h1>Homework Planner</h1>
 
-    <button id="loginButton">
-        Sign in with Google
-    </button>
+        <button id="loginButton">
+            Sign In
+        </button>
+    </header>
 
-    <script type="module" src="firebase-config.js"></script>
+    <main>
+
+        <section id="dashboard">
+
+           <h2>Dashboard</h2>
+
+            <div id="stats">
+
+                <div class="card">
+                    <h3>Pending</h3>
+                    <p id="pendingCount">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Due Today</h3>
+                    <p id="todayCount">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Overdue</h3>
+                    <p id="overdueCount">0</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section>
+
+            <h2>Homework</h2>
+
+            <button id="openDialog">
+                + Add Homework
+            </button>
+
+            <div id="homeworkList"></div>
+
+        </section>
+
+    </main>
+
+    <div id="dialog" class="hidden">
+
+        <div id="dialogBox">
+
+            <h2>Add Homework</h2>
+
+            <select id="subject">
+
+                <option>Mathematics</option>
+                <option>English</option>
+                <option>Physics</option>
+                <option>Chemistry</option>
+                <option>Biology</option>
+
+            </select>
+
+            <input
+                id="title"
+                placeholder="Homework Title">
+
+            <textarea
+                id="description"
+                placeholder="Description"></textarea>
+
+            <h3>Difficulty</h3>
+
+            <div id="difficultySelector">
+
+                <button class="difficultyButton selected" data-value="1">1</button>
+                <button class="difficultyButton" data-value="2">2</button>
+                <button class="difficultyButton" data-value="3">3</button>
+                <button class="difficultyButton" data-value="4">4</button>
+                <button class="difficultyButton" data-value="5">5</button>
+
+            </div>
+
+            <h3>Priority</h3>
+
+            <div id="prioritySelector">
+
+                <button class="priorityButton" data-value="1">Low</button>
+                <button class="priorityButton" data-value="2">Normal</button>
+                <button class="priorityButton selected" data-value="3">Medium</button>
+                <button class="priorityButton" data-value="4">High</button>
+                <button class="priorityButton" data-value="5">Critical</button>
+
+            </div>
+
+            <input
+                type="date"
+                id="dueDate">
+
+            <button id="addButton">
+            Save Homework
+            </button>
+
+            <button id="closeDialog">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
     <script type="module" src="firebase.js"></script>
     <script src="script.js"></script>
 
