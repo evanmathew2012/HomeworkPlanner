@@ -14,6 +14,7 @@ import {
     addDoc,
     getDocs,
     deleteDoc,
+    updateDoc,
     doc as firestoreDoc
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
@@ -111,9 +112,49 @@ window.loadHomework = async function () {
                 ${["Low","Normal","Medium","High","Critical"][hw.priority-1]}
             </p>
 
-            <p><strong>Status:</strong> ${hw.status}</p>
+            <p>
 
-            <button class="deleteButton">🗑 Delete</button>
+            <strong>Status:</strong>
+
+            <span class="status ${
+                hw.status === "Not Started"
+                    ? "notStarted"
+                    : hw.status === "In Progress"
+                    ? "inProgress"
+                    : "completed"
+            }">
+
+            ${hw.status}
+
+            </span>
+
+            </p>
+
+            <div class="buttons">
+
+                <button class="statusButton">
+
+                    ${
+                        hw.status === "Not Started"
+                        ? "▶ Start"
+
+                        : hw.status === "In Progress"
+                        ? "✔ Complete"
+
+                        : "↺ Reset"
+                    }
+
+                </button>
+
+                <button class="editButton">
+                    ✏ Edit
+                </button>
+
+                <button class="deleteButton">
+                    🗑 Delete
+                </button>
+
+            </div>
         `;
 
         homeworkList.appendChild(card);
@@ -131,6 +172,49 @@ window.loadHomework = async function () {
                     "homework",
                     id
                 )
+            );
+
+            loadHomework();
+
+        });
+
+        card.querySelector(".statusButton").addEventListener("click", async ()=>{
+
+            let nextStatus;
+
+            if(hw.status === "Not Started"){
+
+                nextStatus = "In Progress";
+
+            }
+            else if(hw.status === "In Progress"){
+
+                nextStatus = "Completed";
+
+            }
+            else{
+
+                nextStatus = "Not Started";
+
+            }
+
+            await updateDoc(
+
+                firestoreDoc(
+                    db,
+                    "users",
+                    currentUser.uid,
+                    "homework",
+                    id
+                ),
+
+                {
+
+                    status: nextStatus,
+                    updatedAt: Date.now()
+
+                }
+
             );
 
             loadHomework();

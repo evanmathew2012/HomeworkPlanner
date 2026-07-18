@@ -212,3 +212,59 @@ textarea{
     background:#b71c1c;
 
 }
+
+.status{
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-weight:bold;
+
+    display:inline-block;
+
+}
+
+.notStarted{
+
+    background:#616161;
+
+}
+
+.inProgress{
+
+    background:#1976D2;
+
+}
+
+.completed{
+
+    background:#388E3C;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+.statusButton{
+
+    background:#1976D2;
+
+    color:white;
+
+}
+
+.editButton{
+
+    background:#FF9800;
+
+    color:white;
+
+}
